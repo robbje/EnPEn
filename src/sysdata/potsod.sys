@@ -1,0 +1,11 @@
+# Name      MW      Diffusion   Hydration number
+S Na+       22.98   1.3e-9      0
+S K+        55.84   2.6e-9    0
+S Cl-       17      2.00e-9     0
+
+# Group definitions
+G Na+       1H+
+G K+        1H+
+G Cl-       1OH-
+
+# Reactions

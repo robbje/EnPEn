@@ -1,0 +1,11 @@
+# Name      MW      Diffusion   Hydration number
+S Na+       22.98   1.3e-9      0
+S Fe3+      55.84   6.07e-11    0
+S Cl-       17      2.00e-9     0
+
+# Group definitions
+G Na+       1H+
+G Fe3+      3H+
+G Cl-       1OH-
+
+# Reactions

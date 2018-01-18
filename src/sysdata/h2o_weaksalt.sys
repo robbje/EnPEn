@@ -1,0 +1,19 @@
+# Name  MW      Diffusion   Hydration number
+S H2O   18.5    1e-09       0
+S H+    1       1e-09       0
+S OH-   17      1e-09       0
+S A-    129.1   1e-09       0
+S A0    130.1   1e-09       0
+S C+    22.98   1e-09       0
+
+# Group definitions
+G OH-       1OH-
+G H+        1H+
+G H2O       1H2O
+G A-        1COO- 1COOH 1a-CH2 1HC=CH2
+G A0        2COOH 1a-CH2 1HC=CH2
+G C+        1H+
+
+# Reactions
+REAC f=1e2; k=14;   -1H+ -1OH-
+REAC f=1e2; k=4.0; 1A0 -1A- -1C+ 

@@ -1,0 +1,13 @@
+# Name      MW      Diffusion   Hydration number
+S C+       22.98   1e-9        0
+S C2+      40.00   1e-9       0
+S C3+      60.00   1e-11       0 
+S A-       17      1e-9        0
+
+# Group definitions
+G C+       1H+
+G C2+      2H+
+G C3+      2H+
+G A-       1OH-
+
+# Reactions

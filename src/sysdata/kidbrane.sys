@@ -1,0 +1,20 @@
+# Id    MW      Diff.-coeff Hydration number(unused)
+S H2O   18.5    1e-10       0
+S H+    1       9.3e-09     0
+S OH-   17      5.3e-09     0
+S Alb-  66500   1e-11       0
+S Na+   22.98   1.3e-09     0
+#S Ca2+  55.84   7.93e-10    0
+#S Cl-   17      2.00e-09    0
+
+# Group definitions
+G OH-       1OH-
+G H+        1H+
+G H2O       1H2O
+G Alb-      23COO- 1COOH 1CH2 1NH2
+G Na+       1H+
+#G Ca2+      2H+
+#G Cl-       1OH-
+
+# Reactions
+REAC f=1e2; k=14;                 -1H+    -1OH-

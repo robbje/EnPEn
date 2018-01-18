@@ -1,0 +1,23 @@
+# Name  MW      Diffusion   Hydration number
+S H2O   18.5    1e-10       0
+S H+    1       9.3e-09     0
+S OH-   17      5.3e-09     0
+S PO4   95.0    1.6e-09     0
+S HPO4  96.0    1.6e-09     0
+S H2PO4 97.0    1.6e-09     0
+S H3PO4 98.0    1.6e-09     0
+
+# Group definitions
+G OH-       1OH-
+G H+        1H+
+G H2O       1H2O
+G PO4       3COO-
+G HPO4      2COO-
+G H2PO4     1COO-
+G H3PO4     1COOH
+
+# Reactions
+REAC f=1e2; k=14;   -1H+ -1OH-
+REAC f=1e4; k=2.148; 1H3PO4 -1H2PO4 -1H+
+REAC f=1e4; k=7.198; 1H2PO4 -1HPO4 -1H+
+REAC f=1e4; k=12.319; 1HPO4 -1PO4 -1H+

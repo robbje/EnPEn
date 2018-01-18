@@ -1,0 +1,27 @@
+# Name  MW      Diffusion   Hydration number
+#S H2O   18.5    1e-10       0
+#S H+    1       9.3e-09     0
+#S OH-   17      5.3e-09     0
+S Cu2+  1       0.714e-09   0
+S SO42- 1       1.065e-09   0
+#S CuSO4 1       0.855e-09   0
+#S HSO42- 1      1e-10       0
+#S CuHSO4+ 1     1e-10       0
+
+# Group definitions
+#G OH-       1OH-
+#G H+        1H+
+#G H2O       1H2O
+G Cu2+      2H+
+G SO42-     2OH-
+#G CuSO4     1H2O
+#G HSO42-    1OH-
+#G CuHSO4+   1H+
+
+
+# Reactions
+#REAC f=1e2; k=14;   -1H+ -1OH-
+#REAC f=1e2; k=2.36; 1CuSO4 -1Cu2+ -1SO42-
+#REAC f=1e2; k=1.99; 1HSO42- -1H+ -1SO42-
+#REAC f=1e2; k=-7.5; 1CuOH+ 1H+ -1Cu2+
+#REAC f=1e2; k=2.34; -1CuHSO4+ 1Cu2+ 1H+ 1SO42-
