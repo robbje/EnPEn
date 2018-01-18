@@ -1,7 +1,7 @@
 # EnPEn
 
 There it is. The code producing all of my dissertation. It's academic and
-therfore it's ugly, won't compile and will lead to people code up the same
+therefore it's ugly, won't compile and will lead to people code up the same
 stuff, just better (tm).
 
 ## What it does
