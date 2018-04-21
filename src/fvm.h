@@ -28,7 +28,7 @@ typedef fvm_PetscObject petsc;
 /* Class methods definitions */
 static PyObject *petsc_new(PyTypeObject *type, PyObject *args, PyObject *kwds);
 static int petsc_init_(petsc *self, PyObject *args, PyObject *kwds);
-static petsc_dealloc(petsc *self);
+static void petsc_dealloc(petsc *self);
 
 static PyObject *petsc_set_system(petsc *self, PyObject *args);
 static PyObject *petsc_set_mesh(petsc *self, PyObject *args);

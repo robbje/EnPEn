@@ -39,12 +39,14 @@ int main(int argc, char **argv)
     err = equi_create(&e); if(err) return err;
     err = equi_parse(e, &p); if(err) return err;
     PetscBool set;
-    err = PetscOptionsGetReal(NULL, "-acid_conc", &(e->component[0]->c), &set);
+    err = PetscOptionsGetReal(NULL, NULL, "-acid_conc", &(e->component[0]->c), &set);
     if(err||!set) {
+        printf("Acid concentration not set\n");
         return -1;
     }
-    err = PetscOptionsGetReal(NULL, "-naoh_conc", &(e->component[1]->c), &set);
+    err = PetscOptionsGetReal(NULL, NULL, "-naoh_conc", &(e->component[1]->c), &set);
     if(err||!set) {
+        printf("NaOH concentration not set\n");
         return -1;
     }
     PetscPrintf(PETSC_COMM_WORLD, "[%g|%g]", e->component[0]->c, e->component[1]->c);
@@ -57,14 +59,13 @@ int main(int argc, char **argv)
   
     /* Run experiments */
     char name[256];
-    err = PetscOptionsGetString(NULL, "-name", name, 256, &set);
+    err = PetscOptionsGetString(NULL, NULL, "-name", name, 256, &set);
     if(err||!set) {
         printf("Name of application not set. use -name\n");
         iface->finish(&app);
         return err;
     }
     err = app_set_name(&app, name); if(err) return err;
-    if(err) return err;
     err = sweep_boundary_chargeall(&app, FACETYPE_BOUNDARY_RIGHT, initial,
             &initial[p.num_species], 0.00, 25.002, 1); if(err) return err;
 

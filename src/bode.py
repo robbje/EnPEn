@@ -8,8 +8,7 @@ import Queue
 import numpy as np
 import time
 
-os.environ['LD_LIBRARY_PATH'] = '/home/rofe01/apps/petsc/arch-linux2-c-opt/lib'
-eis_bin = '/home/rofe01/cvt/code/fvm/src/eis'
+eis_bin = './eis'
 MAX_THREADS = 6
 
 def run_eis(frequency, charge=0.1, bias=0.0, modulus=0.001, name='impedance'):
@@ -36,8 +35,8 @@ def run_eis(frequency, charge=0.1, bias=0.0, modulus=0.001, name='impedance'):
         argv += arg
     try:
         subprocess.check_call(argv)
-    except:
-        print "[!] Problem occurred simulating frequency: %g" % frequency
+    except Exception as e:
+        print "[!] Problem occurred simulating frequency: %g - %s" % (frequency, e)
         os.unlink('outdata/%s.json' % filename)
         return
 

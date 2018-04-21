@@ -75,7 +75,7 @@ int main(int argc, char **argv)
     boundary_set_state(&mesh, FACETYPE_BOUNDARY_RIGHT, initial, n);
     copy_solution_from_mesh(&app);
 
-    err = app_set_name(&app, "diss/lbl/steady/lbl_CEM1M_400nm_0.0");
+    err = app_set_name(&app, "said");
     if(err) return err;
     err = sweep_boundary_chargeall(&app, FACETYPE_BOUNDARY_RIGHT, initial,
             &initial[p.num_species], 0, 10, 0.5); if(err) return err;

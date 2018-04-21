@@ -51,7 +51,7 @@ int main(int argc, char **argv)
     //aem.end_charge = 0.1;
     aem.epsilon = 1;
     PetscBool set;
-    err = PetscOptionsGetReal(NULL, "-charge", &(aem.end_charge), &set);
+    err = PetscOptionsGetReal(NULL, NULL, "-charge", &(aem.end_charge), &set);
     if(err||!set) {
         return -1;
     }
@@ -71,15 +71,15 @@ int main(int argc, char **argv)
     //equi_get_initial(e, initial);
     //equi_destroy(e);
 
-    err = PetscOptionsGetReal(NULL, "-eis-bias", &(p.impedance.bias), &set);
+    err = PetscOptionsGetReal(NULL, NULL, "-eis-bias", &(p.impedance.bias), &set);
     if(err||!set) {
         return -1;
     }
-    err = PetscOptionsGetReal(NULL, "-eis-modulus", &(p.impedance.modulus), &set);
+    err = PetscOptionsGetReal(NULL, NULL, "-eis-modulus", &(p.impedance.modulus), &set);
     if(err||!set) {
         return err;
     }
-    err = PetscOptionsGetReal(NULL, "-eis-frequency", &(p.impedance.f), &set);
+    err = PetscOptionsGetReal(NULL, NULL, "-eis-frequency", &(p.impedance.f), &set);
     if(err||!set) {
         return err;
     }
@@ -87,7 +87,7 @@ int main(int argc, char **argv)
     err = impedance_setup(&app, &initial[0], n); if(err) return err;
 
     char name[256];
-    err = PetscOptionsGetString(NULL, "-eis-name", name, 256, &set);
+    err = PetscOptionsGetString(NULL, NULL, "-eis-name", name, 256, &set);
     if(err||!set) {
         printf("Name of application not set. use -eis-name\n");
         iface->finish(&app);

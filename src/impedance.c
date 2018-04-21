@@ -108,9 +108,12 @@ PetscErrorCode impedance_run(app_t *app)
     dt = (1.0/app->p->impedance.f)/SAMPLES_PER_PERIOD/app->p->t0;
     model_t *model = (model_t *) app->solverdata;
 
-    ierr = TSSetInitialTimeStep(model->ts, 0.0, dt); CHKERRQ(ierr);
+    ierr = TSSetTime(model->ts, 0.0); CHKERRQ(ierr);
+    ierr = TSSetTimeStep(model->ts, dt); CHKERRQ(ierr);
     ierr = TSSetSolution(model->ts, model->x); CHKERRQ(ierr);
-    ierr = TSSetDuration(model->ts, 2*t_final/dt, t_final+dt); CHKERRQ(ierr);
+    ierr = TSSetMaxSteps(model->ts, 2*t_final/dt); CHKERRQ(ierr);
+    ierr = TSSetMaxTime(model->ts, t_final+dt); CHKERRQ(ierr);
+    ierr = TSSetExactFinalTime(model->ts, TS_EXACTFINALTIME_INTERPOLATE); CHKERRQ(ierr);
     ierr = TSMonitorSet(model->ts, impedance_sampler, (void *) app, NULL);
     CHKERRQ(ierr);
     ierr = TSSetApplicationContext(model->ts, (void *) app); CHKERRQ(ierr);

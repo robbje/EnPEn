@@ -41,25 +41,22 @@ int main(int argc, char **argv)
     unsigned int n = p.num_species + NPP_1D.num_add_vars;
 
     /* Find initial conditions */
-    //double *initial = alloca(app.nv*sizeof(double));
-    //equi_t *e;
-    //err = equi_create(&e); if(err) return err;
-    //err = equi_parse(e, &p); if(err) return err;
-    //e->component[0]->c = 50/130.1;
-    //equi_get_initial(e, initial);
-    //equi_destroy(e);
-
-    double initial2[7] = {54.0541, 1e-7, 1e-7, 0.001, 0.001, 0};
-    double *initial = &initial2[0];
-
+    double *initial = alloca(app.nv*sizeof(double));
+    equi_t *e;
+    err = equi_create(&e); if(err) return err;
+    err = equi_parse(e, &p); if(err) return err;
+    e->component[0]->c = 50/130.1;
     err = equi_solve(initial, &p); if(err<0) return err;
+    equi_get_initial(e, initial);
+    equi_destroy(e);
+
     mesh_set_state(&mesh, initial, n);
     boundary_set_state(&mesh, FACETYPE_BOUNDARY_LEFT, initial, n);
     boundary_set_state(&mesh, FACETYPE_BOUNDARY_RIGHT, initial, n);
     copy_solution_from_mesh(&app);
   
     /* Run experiments */
-    err = app_set_name(&app, "diss/lbl/steady/");
+    err = app_set_name(&app, "outdata/bpm");
     err = sweep_boundary_chargeall(&app, FACETYPE_BOUNDARY_RIGHT, initial,
             &initial[p.num_species], 0, 10, 1); if(err) return err;
     /* Finish and exit */

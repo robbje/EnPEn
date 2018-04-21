@@ -44,7 +44,7 @@ MSH+=meshdata/ellipso-1D.msh
 
 # Systems
 SYS=sysdata/h2o_ita.def
-SYS=sysdata/h2o_oxal.def
+SYS+=sysdata/h2o_oxal.def
 SYS+=sysdata/phosphoric_acid.def
 SYS+=sysdata/glutamic_acid.def
 SYS+=sysdata/h2o_nacl.def
@@ -129,6 +129,10 @@ equi-run: equitest
 acids-run: acids
 	@echo "[EX] >>> "$<
 	$(LDPATH) mpirun $(MPIOPTS) ./acids $(OPTS)
+
+crono-run: crono
+	@echo "[EX] >>> "$<
+	$(LDPATH) mpirun $(MPIOPTS) ./crono $(OPTS)
 	
 ### PATTERNS
 %.o: %.c
@@ -168,6 +172,10 @@ said: $(OBJ) said.o
 acids: $(OBJ) acids.o
 	@echo "[LD] >>> "$@
 	@$(PCC) $(LDFLAGS) $(OBJ) acids.o -o $@ 
+
+chrono: $(OBJ) chronopotentio.o
+	@echo "[LD] >>> "$@
+	@$(PCC) $(LDFLAGS) $^ -o $@ 
 
 flow: $(OBJ) flow.o
 	@echo "[LD] >>> "$@

@@ -1,5 +1,6 @@
 #include "interface.h"
 #include "iface_petsc.h"
+PETSC_EXTERN PetscErrorCode (*PetscVFPrintf)(FILE*,const char[],va_list);
 
 io_t IO_PETSC = {
     .fopen = petsc_fopen,

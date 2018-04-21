@@ -229,7 +229,7 @@ static int petsc_init_(petsc *self, PyObject *args, PyObject *kwds)
     return 0;
 }
 
-static petsc_dealloc(petsc *self)
+static void petsc_dealloc(petsc *self)
 {
     model_t *model;
     model = (model_t *) self->app.solverdata;

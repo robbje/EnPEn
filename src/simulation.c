@@ -403,9 +403,11 @@ PetscErrorCode time_ivc(app_t *app, double *initial, unsigned int n)
     TSType t;
     ierr = TSGetType(model->ts, &t);
     PetscPrintf(PETSC_COMM_WORLD, "%s\n", t);
-    ierr = TSSetInitialTimeStep(model->ts, 0.0, dt); CHKERRQ(ierr);
+    ierr = TSSetTime(model->ts, 0.0); CHKERRQ(ierr);
+    ierr = TSSetTimeStep(model->ts, dt); CHKERRQ(ierr);
     ierr = TSSetSolution(model->ts, model->x); CHKERRQ(ierr);
-    ierr = TSSetDuration(model->ts, final_time/dt, final_time); CHKERRQ(ierr);
+    ierr = TSSetMaxSteps(model->ts, final_time/dt); CHKERRQ(ierr);
+    ierr = TSSetMaxTime(model->ts, final_time); CHKERRQ(ierr);
     ierr = TSMonitorSet(model->ts, tsmon, (void *) app, NULL); CHKERRQ(ierr);
     ierr = TSSetApplicationContext(model->ts, (void *) app); CHKERRQ(ierr);
     ierr = TSSetPreStep(model->ts, ts_setter); CHKERRQ(ierr);
@@ -433,9 +435,11 @@ PetscErrorCode time_current_control(app_t *app, double *initial, unsigned int n)
     TSType t;
     ierr = TSGetType(model->ts, &t);
     PetscPrintf(PETSC_COMM_WORLD, "%s\n", t);
-    ierr = TSSetInitialTimeStep(model->ts, 0.0, dt); CHKERRQ(ierr);
+    ierr = TSSetTime(model->ts, 0.0); CHKERRQ(ierr);
+    ierr = TSSetTimeStep(model->ts, dt); CHKERRQ(ierr);
     ierr = TSSetSolution(model->ts, model->x); CHKERRQ(ierr);
-    ierr = TSSetDuration(model->ts, final_time/dt, final_time); CHKERRQ(ierr);
+    ierr = TSSetMaxSteps(model->ts, final_time/dt); CHKERRQ(ierr);
+    ierr = TSSetMaxTime(model->ts, final_time); CHKERRQ(ierr);
     ierr = TSMonitorSet(model->ts, tsmon, (void *) app, NULL); CHKERRQ(ierr);
     ierr = TSSetApplicationContext(model->ts, (void *) app); CHKERRQ(ierr);
     ierr = TSSetPreStep(model->ts, ts_controller); CHKERRQ(ierr);

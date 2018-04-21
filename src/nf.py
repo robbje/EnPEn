@@ -8,8 +8,7 @@ import Queue
 import numpy as np
 import time
 
-#os.environ['LD_LIBRARY_PATH'] = '/home/rofe01/apps/petsc/arch-linux2-c-opt/lib'
-eis_bin = '/home/rob/cvt/code/fvm/src/flow'
+eis_bin = './flow'
 MAX_THREADS = 6
 TOLERANCES = {'-snes_atol':'1e-8', '-snes_stol':'1e-30', '-snes_stol':'1e-16'}
 
