@@ -90,7 +90,6 @@ PetscErrorCode sweep_zones(app_t *app)
 
     zonelist_t *zonelist = app->mesh->zones;
     if(zonelist == NULL) {
-        PetscPrintf(PETSC_COMM_WORLD, "No zones found. Not sweeping.\n");
         ierr = SNESSolve(model->snes, NULL, model->x); CHKERRQ(ierr);
         ierr = SNESGetConvergedReason(model->snes, &reason); CHKERRQ(ierr);
         ierr = petsc_check_solution(model, &is_positive); CHKERRQ(ierr);
@@ -395,16 +394,17 @@ PetscErrorCode time_ivc(app_t *app, double *initial, unsigned int n)
     boundary_modify_state(app->mesh, FACETYPE_BOUNDARY_LEFT, 0.0, app->p->num_species);
 
     model_t *model = (model_t *) app->solverdata;
-    double final_time = 80.0/app->p->t0; /* In seconds */
+    double final_time = 1.0/app->p->t0; /* In seconds */
     /* In seconds: If you encounter negative concentrations, lower this value.
      * For reactive systems I found 0.1/app->p->t0 to be a good value.
      */
-    double dt = 0.5/app->p->t0;
+    double dt = 0.000001/app->p->t0;
     TSType t;
     ierr = TSGetType(model->ts, &t);
     PetscPrintf(PETSC_COMM_WORLD, "%s\n", t);
     ierr = TSSetTime(model->ts, 0.0); CHKERRQ(ierr);
     ierr = TSSetTimeStep(model->ts, dt); CHKERRQ(ierr);
+    ierr = TSSetExactFinalTime(model->ts, TS_EXACTFINALTIME_INTERPOLATE); CHKERRQ(ierr);
     ierr = TSSetSolution(model->ts, model->x); CHKERRQ(ierr);
     ierr = TSSetMaxSteps(model->ts, final_time/dt); CHKERRQ(ierr);
     ierr = TSSetMaxTime(model->ts, final_time); CHKERRQ(ierr);

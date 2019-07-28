@@ -106,6 +106,7 @@ void mesh_set(mesh_t *mesh, meshdef_t *def);
 int mesh_parse(mesh_t *mesh, io_t *io);
 int mesh_add_zone(mesh_t *mesh, zone_t *zone);
 void mesh_set_state(mesh_t *mesh, double *state, unsigned int len);
+void mesh_set_state_range(mesh_t *mesh, double a, double b, double *state, unsigned int len);
 void boundary_set_state(mesh_t *mesh, int boundary, double *state,
         unsigned int len);
 void boundary_set_type(mesh_t *mesh, int boundary, int type);
@@ -115,7 +116,6 @@ void mesh_apply_zones(mesh_t *mesh);
 int mesh_open_dumpfile(io_t *io, const char *filename);
 int mesh_dump(mesh_t *mesh, io_t *io, double indexval, unsigned int nv);
 int mesh_close_dumpfile(io_t *io);
-
 
 /**** mesh_1D.c */
 int mesh_parse_1D(mesh_t *mesh, io_t *io);

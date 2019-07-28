@@ -6,7 +6,7 @@ stuff, just better (tm).
 
 ## What it does
 
-EnPEN solves the coupled Nernst-Planck-Poisson equations in one dimension,
+EnPEn solves the coupled Nernst-Planck-Poisson equations in one dimension,
 while accounting for chemical reactions. It can handle any ion exchange
 membrane setup you can think of (multilayered assemblies, bipolar membranes).
 Add some convection, why not.  It can simulate electrical impedance

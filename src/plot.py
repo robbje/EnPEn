@@ -123,11 +123,11 @@ for i in xrange(nv):
 ### PLOT WATER IONS ###
 fig = plt.figure()
 plots = []
-for i in range(0,nv-1):
+for i in range(nv-5,nv-3):
     plot, = plt.plot(x, y[i])
     plots.append(plot)
 plt.title("Concentrations at %f" % V)
-plt.legend(plots, names[0:nv-1])
+plt.legend(plots, names[nv-5:nv-3])
 plt.show()
 
 #for i, v in enumerate(x):
@@ -183,15 +183,15 @@ for i,v in enumerate(x):
 
 
 ### PLOT POTENTIAL ###
-fig = plt.figure()
-phi, = plt.plot(x, y[nv-1])
-plt.title("Potential at %f" % V)
-plt.legend([phi], [names[nv-1]])
-plt.show()
-
-for i, xval in enumerate(x):
-    if xval > 98 and xval < 101:
-        print "%.8f, %.8f" % (xval, y[nv-1][i])
+#fig = plt.figure()
+#phi, = plt.plot(x, y[nv-1])
+#plt.title("Potential at %f" % V)
+#plt.legend([phi], [names[nv-1]])
+#plt.show()
+#
+#for i, xval in enumerate(x):
+#    if xval > 98 and xval < 101:
+#        print "%.8f, %.8f" % (xval, y[nv-1][i])
 
 ### PLOT CONDUCTIVITY ###
 #sigma = []

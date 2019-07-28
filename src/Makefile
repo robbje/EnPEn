@@ -44,6 +44,7 @@ MSH+=meshdata/ellipso-1D.msh
 
 # Systems
 SYS=sysdata/h2o_ita.def
+SYS+=sysdata/memristor.def
 SYS+=sysdata/h2o_oxal.def
 SYS+=sysdata/phosphoric_acid.def
 SYS+=sysdata/glutamic_acid.def

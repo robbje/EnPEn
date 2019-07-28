@@ -32,6 +32,17 @@ void mesh_set_state(mesh_t *mesh, double *state, unsigned int len)
     }
 }
 
+void mesh_set_state_range(mesh_t *mesh, double a, double b, double *state, unsigned int len)
+{
+    unsigned int vi;
+    for(vi = 0; vi < mesh->num_volumes; vi++) {
+        double x = mesh->volumes[vi]->center.x;
+        if(a <= x && x <= b) {
+            memcpy(mesh->volumes[vi]->state, state, len * sizeof(double));
+        }
+    }
+}
+
 void boundary_set_state(mesh_t *mesh, int boundary, double *state,
         unsigned int len)
 {
